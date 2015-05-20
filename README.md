@@ -3,15 +3,21 @@ A Javascript library for a simple Observer pattern
 
 How to use:
 
-Create a new a new Observable:
+<h4>Create a new a new Observable:</h4>
 
 var observable = Thunder.make()
 
-Create a new Observer/Stream:
+<h4>Create a new Observer/Stream:</h4>
 
 var stream = observable.subscribe();
 
-React to changes to the observable:
+<h4>React to changes to the observable:</h4>
 
 stream.react(function onChange() {
+  console.log('reacted');
 });
+
+<h4>Publish changes to the observable:</h4>
+
+observable.publish('I have changed');
+
