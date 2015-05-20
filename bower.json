@@ -6,7 +6,7 @@
     "David"
   ],
   "description": "A Javascript library for a simple Observer pattern inspired by reactive programming",
-  "main": "thunder.js",
+  "main": "dist/thunder.js",
   "moduleType": [
     "node"
   ],
