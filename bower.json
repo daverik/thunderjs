@@ -1,0 +1,26 @@
+{
+  "name": "ThunderJS",
+  "version": "0.0.1",
+  "homepage": "https://github.com/friskydingo/thunderjs",
+  "authors": [
+    "David"
+  ],
+  "description": "A Javascript library for a simple Observer pattern inspired by reactive programming",
+  "main": "thunder.js",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "javascript",
+    "reactive",
+    "observer"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

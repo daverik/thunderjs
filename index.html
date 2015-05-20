@@ -1,0 +1,29 @@
+<html>
+	<head></head>
+	<body>
+		
+		<script src="dist/thunder.js"></script>
+		<script>
+			var thunder = Thunder.make();
+
+			thunder.publish('hej');
+
+			var stream = thunder.subscribe().react(function(event) {
+				if(!this.first().isRead()) {
+					console.log(this.first().read());
+				}
+			}).reject(function(data) {
+				console.log(data);
+			});
+
+			thunder.publish('hej');
+			thunder.publish('tja');
+			thunder.reject('no');
+
+			thunder.unsubscribe(stream);
+
+			thunder.publish('tja');
+
+		</script>
+	</body>
+</html>
