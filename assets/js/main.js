@@ -49,7 +49,7 @@
 			Snap.load('assets/svg/thunderchart.svg', function(loadedFragment) {
 				var g = s.group();
 				g.append(loadedFragment);
-				g.transform('t50,20');
+				g.transform('t50,60');
 			});
 
 			// s.text(100,100,'hej').attr({
