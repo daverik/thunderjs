@@ -43,6 +43,20 @@
 				);
 			});
 
+			var s = Snap('#intro-svg');
+			s.attr({ viewBox: "0 0 600 600" });
+
+			Snap.load('assets/svg/thunderchart.svg', function(loadedFragment) {
+				var g = s.group();
+				g.append(loadedFragment);
+				g.transform('t50,20');
+			});
+
+			// s.text(100,100,'hej').attr({
+			// 	fill: '#333'
+			// });
+
+
 	});
 
 })(jQuery);

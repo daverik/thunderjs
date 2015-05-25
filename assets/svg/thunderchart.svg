@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="479px" height="393px" viewBox="0 0 479 393" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.0.1 (7597) - http://www.bohemiancoding.com/sketch -->
+    <title>thunderchart</title>
+    <description>Created with Sketch.</description>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="thunderchart" sketch:type="MSLayerGroup">
+            <g id="Oval-1-+-REACT" transform="translate(0.000000, 228.000000)" fill="#CBA09C" sketch:type="MSShapeGroup">
+                <circle id="Oval-1" cx="82.5" cy="82.5" r="82.5"></circle>
+            </g>
+            <circle id="Oval-2" fill="#71A5AE" sketch:type="MSShapeGroup" cx="396.5" cy="310.5" r="82.5"></circle>
+            <g id="Oval-3-+-SUBSCRIBE" transform="translate(157.000000, 0.000000)" fill="#A9BC6C" sketch:type="MSShapeGroup">
+                <circle id="Oval-3" cx="82.5" cy="82.5" r="82.5"></circle>
+            </g>
+            <path d="M269,337 L180,337 L180,332 L269,332 L269,321 L299,334 L269,347 L269,337 Z" id="Rectangle-1" fill="#777777" sketch:type="MSShapeGroup"></path>
+            <path d="M269,291 L180,291 L180,286 L269,286 L269,275 L299,288 L269,301 L269,291 Z" id="Rectangle-1" fill="#777777" sketch:type="MSShapeGroup" transform="translate(239.500000, 288.000000) scale(-1, 1) translate(-239.500000, -288.000000) "></path>
+            <path d="M172,200 L111,200 L111,195 L172,195 L172,184 L193,197 L172,210 L172,200 Z" id="Rectangle-3" fill="#777777" sketch:type="MSShapeGroup" transform="translate(152.000000, 197.000000) scale(-1, 1) rotate(55.000000) translate(-152.000000, -197.000000) "></path>
+            <path d="M342,200 L281,200 L281,195 L342,195 L342,184 L363,197 L342,210 L342,200 Z" id="Rectangle-4" fill="#777777" sketch:type="MSShapeGroup" transform="translate(322.000000, 197.000000) rotate(55.000000) translate(-322.000000, -197.000000) "></path>
+            <text id="SUBSCRIBE" sketch:type="MSTextLayer" font-family="Bebas Neue" font-size="40" font-weight="normal" fill="#FFFFFF">
+                <tspan x="175" y="96">SUBSCRIBE</tspan>
+            </text>
+            <text id="REACT" sketch:type="MSTextLayer" font-family="Bebas Neue" font-size="40" font-weight="normal" fill="#FFFFFF">
+                <tspan x="44" y="325">REACT</tspan>
+            </text>
+            <text id="REACT-2" sketch:type="MSTextLayer" font-family="Bebas Neue" font-size="40" font-weight="normal" fill="#FFFFFF">
+                <tspan x="358" y="325">REACT</tspan>
+            </text>
+        </g>
+    </g>
+</svg>
