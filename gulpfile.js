@@ -5,6 +5,7 @@ var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
 var browserify = require('gulp-browserify');
 var watch = require('gulp-watch');
+var karma = require('karma').server
 var sass = require('gulp-sass');
 
 // JS concat, strip debugging and minify
@@ -17,13 +18,20 @@ gulp.task('scripts', function(done) {
         }))
         // .pipe(uglify())
         .pipe(gulp.dest('dist'))
+});
 
+gulp.task('test', function(done) {
+  karma.start({
+        configFile: __dirname + '/karma.conf.js',
+        singleRun: false 
+    }, done);
 });
 
 gulp.task('watch', function() {
-    gulp.src(['./src/*.js'])
-    .pipe(watch('./src/*.js', ['scripts']))
+    watch('./src/*.js', function() {
+        gulp.start('scripts')
+    })
 });
 
 
-gulp.task('default', ['scripts', 'watch']);
+gulp.task('default', ['scripts', 'test', 'watch']);

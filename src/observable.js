@@ -1,7 +1,8 @@
 var Event = require('./event');
 
-function Observable(id, eventList) {
+function Observable(id, eventList, settings) {
     this._id = id;
+    this.settings = settings;
     var _reactFn = null,
         _rejectFn = null,
         _eventList = eventList;
@@ -10,9 +11,11 @@ function Observable(id, eventList) {
 
     var api = {
         _id: that._id,
-        react: function(reactFn) {
+        react: function(reactFn, first) {
             _reactFn = reactFn;
-            that.update(Event.make());
+            if(that.settings.first && !_eventList.length) {
+                that.update(Event.make());
+            }
             return api;
         },
         reject: function(rejectFn) {
@@ -45,8 +48,8 @@ function Observable(id, eventList) {
     }
 }
 
-function make(id, eventList) {
-    var observable = new Observable(id, eventList);
+function make(id, eventList, settings) {
+    var observable = new Observable(id, eventList, settings);
     return observable;
 }
 
