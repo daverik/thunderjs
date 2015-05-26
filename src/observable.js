@@ -12,9 +12,11 @@ function Observable(id, eventList, settings) {
     var api = {
         _id: that._id,
         react: function(reactFn, first) {
-            _reactFn = reactFn;
-            if(that.settings.first && !_eventList.length) {
-                that.update(Event.make());
+            if (!_reactFn) {
+                _reactFn = reactFn;
+                if (that.settings.first) {
+                    that.update(Event.make());
+                }
             }
             return api;
         },
