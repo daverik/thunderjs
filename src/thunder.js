@@ -39,10 +39,13 @@ function PubSub(settings) {
         if (index !== -1) {
             _this.observers.splice(index, 1);
         }
-
     };
 
-    this.publish = function(msg) {
+    this.getSubscribers = function() {
+        return _this.observers.length;
+    };
+
+    function publish(msg) {
         var _event = Event.make(msg);
         _this.eventList.push(_event);
         _this.observers.forEach(function(observer) {
@@ -50,11 +53,14 @@ function PubSub(settings) {
         });
     };
 
-    this.reject = function(data) {
+    function reject(data) {
         _this.observers.forEach(function(observer) {
             observer.reject(data);
         });
     };
+
+    this.publish = publish;
+    this.reject = reject;
 
 }
 
@@ -62,4 +68,40 @@ function make(settings) {
     return new PubSub(settings);
 }
 
+function join() {
+    var args = Array.prototype.slice.call(arguments);
+
+    var ps = new PubSub();
+
+    var publish = ps.publish,
+        unsubscribe = ps.unsubscribe;
+
+    var psTokens = [];
+
+    args.forEach(function(_ps) {
+        var token = _ps.subscribe();
+        token.react(function() {
+            publish.call(ps, 'changed');
+        });
+        psTokens.push({
+            ps: _ps,
+            token: token
+        });
+    });
+
+    delete ps.publish;
+    delete ps.reject;
+
+    ps.unsubscribe = function(token) {
+        psTokens.forEach(function(psToken) {            
+            psToken.ps.unsubscribe(psToken.token);
+        });
+
+        unsubscribe.call(ps, token);
+    }
+
+    return ps;
+}
+
 exports.make = make;
+exports.join = join;

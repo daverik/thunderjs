@@ -124,4 +124,33 @@ describe('Tests the thunder app', function() {
 
 		expect(token).toBeDefined();
 	});
+
+	it('should join two thunders', function() {
+		var thunder1 = Thunder.make(),
+			thunder2 = Thunder.make();
+
+		var joinedThunder = Thunder.join(thunder1, thunder2);
+
+		var counter = 0;
+
+		var token = joinedThunder.subscribe();
+
+		token.react(function() {
+			counter++;
+		});
+
+		thunder1.publish();
+		thunder2.publish();
+
+		expect(counter).toBe(3);
+		expect(joinedThunder.publish).toBeUndefined();
+		expect(thunder1.publish).toBeDefined();
+
+		expect(joinedThunder.getSubscribers()).toBe(1);
+
+		joinedThunder.unsubscribe(token);
+
+		expect(joinedThunder.getSubscribers()).toBe(0);
+
+	});
 });
