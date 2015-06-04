@@ -71,18 +71,16 @@ function make(settings) {
 function join(arr) {
     var args;
 
-    if(Object.prototype.toString.call( arr ) === '[object Array]' ) {
+    if( Array.isArray(arr) ) {
         args = arr;
     } else {
        args = Array.prototype.slice.call(arguments); 
     }
 
-    var ps = new PubSub();
-
-    var publish = ps.publish,
-        unsubscribe = ps.unsubscribe;
-
-    var psTokens = [];
+    var ps = new PubSub(),
+        publish = ps.publish,
+        unsubscribe = ps.unsubscribe,
+        psTokens = [];
 
     args.forEach(function(_ps) {
         var token = _ps.subscribe();
@@ -99,6 +97,7 @@ function join(arr) {
     delete ps.reject;
 
     ps.unsubscribe = function(token) {
+        
         psTokens.forEach(function(psToken) {            
             psToken.ps.unsubscribe(psToken.token);
         });
