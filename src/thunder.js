@@ -68,8 +68,14 @@ function make(settings) {
     return new PubSub(settings);
 }
 
-function join() {
-    var args = Array.prototype.slice.call(arguments);
+function join(arr) {
+    var args;
+
+    if(Object.prototype.toString.call( arr ) === '[object Array]' ) {
+        args = arr;
+    } else {
+       args = Array.prototype.slice.call(arguments); 
+    }
 
     var ps = new PubSub();
 
