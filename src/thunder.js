@@ -7,11 +7,13 @@ function PubSub(settings) {
         first: true
     };
 
+    var _this = this;
+
     this.settings = defaultSettings;
 
     for (var property in settings) {
         if (settings.hasOwnProperty(property)) {
-        	this.settings[property] = settings[property];
+            this.settings[property] = settings[property];
         }
     }
 
@@ -19,41 +21,42 @@ function PubSub(settings) {
     this.eventList = [];
     this.observers = [];
     this.idCounter = 0;
-}
 
-PubSub.prototype.subscribe = function() {
-    var _observable = Observable.make(this.idCounter++, this.eventList, this.settings);
-    this.observers.push(_observable);
-    return _observable.expose();
-};
+    this.subscribe = function() {
+        var _observable = Observable.make(_this.idCounter++, _this.eventList, _this.settings);
+        _this.observers.push(_observable);
+        return _observable.expose();
+    };
 
-PubSub.prototype.unsubscribe = function(exposedObservable) {
-    var index = -1;
-    for (var i = 0; i < this.observers.length; i++) {
-        if (exposedObservable._id === this.observers[i]._id) {
-            index = i;
-            break;
+    this.unsubscribe = function(exposedObservable) {
+        var index = -1;
+        for (var i = 0; i < _this.observers.length; i++) {
+            if (exposedObservable._id === _this.observers[i]._id) {
+                index = i;
+                break;
+            }
         }
-    }
-    if (index !== -1) {
-        this.observers.splice(index, 1);
-    }
+        if (index !== -1) {
+            _this.observers.splice(index, 1);
+        }
 
-};
+    };
 
-PubSub.prototype.publish = function(msg) {
-    var _event = Event.make(msg);
-    this.eventList.push(_event);
-    this.observers.forEach(function(observer) {
-		observer.update(_event);
-    });
-};
+    this.publish = function(msg) {
+        var _event = Event.make(msg);
+        _this.eventList.push(_event);
+        _this.observers.forEach(function(observer) {
+            observer.update(_event);
+        });
+    };
 
-PubSub.prototype.reject = function(data) {
-    this.observers.forEach(function(observer) {
-        observer.reject(data);
-    });
-};
+    this.reject = function(data) {
+        _this.observers.forEach(function(observer) {
+            observer.reject(data);
+        });
+    };
+
+}
 
 function make(settings) {
     return new PubSub(settings);

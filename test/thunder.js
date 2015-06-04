@@ -114,4 +114,14 @@ describe('Tests the thunder app', function() {
 		expect(counter).toBe(5);
 
 	});
+
+	it('should have correctly bound this', function() {
+		var thunder = Thunder.make();
+
+		var subscribe = thunder.subscribe;
+
+		var token = subscribe();
+
+		expect(token).toBeDefined();
+	});
 });
