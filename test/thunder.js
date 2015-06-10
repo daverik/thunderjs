@@ -182,4 +182,53 @@ describe('Tests the thunder app', function() {
 		expect(joinedThunder.getSubscribers()).toBe(0);
 
 	});
+
+	it('should debounce', function(done) {
+		var thunder = Thunder.make({
+			first: false
+		});
+
+		var token = thunder.subscribe();
+
+		var reacted = false,
+			counter = 0;
+
+		token.react(function() {
+			reacted = true;
+			++counter;
+		}).debounce(5);
+
+		thunder.publish();
+
+		expect(reacted).toBe(false);
+
+		setTimeout(function() {
+			expect(reacted).toBe(true);
+			expect(counter).toBe(1);
+			done();
+		}, 10);
+	});
+
+	it('should debounce 2', function(done) {
+		var thunder = Thunder.make({
+			first: false
+		});
+
+		var token = thunder.subscribe();
+
+		var counter = 0;
+
+		token.debounce(300).react(function() {
+			++counter;
+		});
+
+		thunder.publish();
+		thunder.publish();
+		thunder.publish();
+
+		setTimeout(function() {
+			expect(counter).toBe(1);
+			done();
+		}, 10);
+	});
 });

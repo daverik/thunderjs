@@ -24,6 +24,16 @@
 
 			thunder.publish('tja');
 
+			var thunder2 = Thunder.make();
+
+			var token = thunder2.subscribe();
+
+			token.debounce(300).react(function() {
+				console.log('tjabba');
+			});
+
+			thunder2.publish('hej');
+
 		</script>
 	</body>
 </html>

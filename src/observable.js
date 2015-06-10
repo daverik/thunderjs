@@ -1,11 +1,14 @@
-var Event = require('./event');
+var Event = require('./event'),
+    Utils = require('./utils');
 
 function Observable(id, eventList, settings) {
     this._id = id;
     this.settings = settings;
     var _reactFn = null,
         _rejectFn = null,
-        _eventList = eventList;
+        _eventList = eventList,
+        _useDebounce = false;
+        _debounce = 0;
 
     var that = this;
 
@@ -14,13 +17,24 @@ function Observable(id, eventList, settings) {
         react: function(reactFn, first) {
             if (!_reactFn) {
                 _reactFn = reactFn;
+                if(_useDebounce) {
+                    _reactFn = Utils.debounce(_reactFn, _debounce)
+                }
                 if (that.settings.first) {
                     that.update(Event.make());
                 }
             }
             return api;
         },
+        debounce: function(time) {
+            _useDebounce = true;
+            if(_reactFn) {
+                _reactFn = Utils.debounce(_reactFn, _debounce);
+            }
+            return api;
+        },
         reject: function(rejectFn) {
+            Utils.deprecate();
             _rejectFn = rejectFn;
             return api;
         },
@@ -38,6 +52,8 @@ function Observable(id, eventList, settings) {
             _reactFn.call(api, event);
         }
     };
+
+    this.notify = this.update;
 
     this.reject = function(data) {
         if (_rejectFn) {
