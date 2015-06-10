@@ -7,6 +7,7 @@ var browserify = require('gulp-browserify');
 var watch = require('gulp-watch');
 var karma = require('karma').server
 var sass = require('gulp-sass');
+var jsdoc = require("gulp-jsdoc");
 
 // JS concat, strip debugging and minify
 gulp.task('scripts', function(done) {
@@ -31,6 +32,11 @@ gulp.task('watch', function() {
     watch('./src/*.js', function() {
         gulp.start('scripts')
     })
+});
+
+gulp.task('docs', function() {
+    gulp.src('./src/*.js')
+    .pipe(jsdoc('./docs'))
 });
 
 
